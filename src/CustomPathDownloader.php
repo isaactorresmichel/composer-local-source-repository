@@ -13,10 +13,13 @@ use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Download a package from a local path.
+ * Override for base path downloader. Code taken from David García on
+ * https://github.com/composer/composer/pull/6174/files
  *
- * @author Samuel Roze <samuel.roze@gmail.com>
- * @author Johann Reinke <johann.reinke@gmail.com>
+ * @author David García <https://github.com/david-garcia-garcia/>
+ * @author Isaac Torres <https://github.com/isaactorresmichel>
+ *
+ * @see \Composer\Downloader\PathDownloader
  */
 class CustomPathDownloader extends CustomFileDownloader implements VcsCapableDownloaderInterface
 {
@@ -38,7 +41,7 @@ class CustomPathDownloader extends CustomFileDownloader implements VcsCapableDow
             return;
         }
 
-        $url     = $package->getDistUrl();
+        $url = $package->getDistUrl();
         $realUrl = realpath($url);
         if (false === $realUrl || !file_exists($realUrl) || !is_dir($realUrl)) {
             throw new \RuntimeException(sprintf(
@@ -51,7 +54,7 @@ class CustomPathDownloader extends CustomFileDownloader implements VcsCapableDow
         $transportOptions = $package->getTransportOptions() + array('symlink' => null);
 
         // When symlink transport option is null, both symlink and mirror are allowed
-        $currentStrategy   = self::STRATEGY_SYMLINK;
+        $currentStrategy = self::STRATEGY_SYMLINK;
         $allowedStrategies = array(
           self::STRATEGY_SYMLINK,
           self::STRATEGY_MIRROR
@@ -63,10 +66,10 @@ class CustomPathDownloader extends CustomFileDownloader implements VcsCapableDow
         }
 
         if (true === $transportOptions['symlink']) {
-            $currentStrategy   = self::STRATEGY_SYMLINK;
+            $currentStrategy = self::STRATEGY_SYMLINK;
             $allowedStrategies = array(self::STRATEGY_SYMLINK);
         } elseif (false === $transportOptions['symlink']) {
-            $currentStrategy   = self::STRATEGY_MIRROR;
+            $currentStrategy = self::STRATEGY_MIRROR;
             $allowedStrategies = array(self::STRATEGY_MIRROR);
         }
 
@@ -96,7 +99,7 @@ class CustomPathDownloader extends CustomFileDownloader implements VcsCapableDow
                     }
                     $shortestPath = $this->filesystem->findShortestPath($absolutePath,
                       $realUrl);
-                    $path         = rtrim($path, "/");
+                    $path = rtrim($path, "/");
                     $this->io->writeError(sprintf('Symlinking from %s', $url),
                       false);
                     $fileSystem->symlink($shortestPath, $path);
@@ -106,7 +109,7 @@ class CustomPathDownloader extends CustomFileDownloader implements VcsCapableDow
                     $this->io->writeError('');
                     $this->io->writeError('    <error>Symlink failed, fallback to use mirroring!</error>');
                     $currentStrategy = self::STRATEGY_MIRROR;
-                    $isFallback      = true;
+                    $isFallback = true;
                 } else {
                     throw new \RuntimeException(sprintf('Symlink from "%s" to "%s" failed!',
                       $realUrl, $path));
@@ -152,10 +155,10 @@ class CustomPathDownloader extends CustomFileDownloader implements VcsCapableDow
      */
     public function getVcsReference(PackageInterface $package, $path)
     {
-        $parser  = new VersionParser;
+        $parser = new VersionParser;
         $guesser = new VersionGuesser($this->config,
           new ProcessExecutor($this->io), $parser);
-        $dumper  = new ArrayDumper;
+        $dumper = new ArrayDumper;
 
         $packageConfig = $dumper->dump($package);
         if ($packageVersion = $guesser->guessVersion($packageConfig, $path)) {
