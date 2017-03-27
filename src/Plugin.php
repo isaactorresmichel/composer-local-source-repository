@@ -3,7 +3,6 @@ namespace isaactorresmichel\Composer;
 
 use Composer\Cache;
 use Composer\Composer;
-use Composer\DependencyResolver\Operation\InstallOperation;
 use Composer\Downloader\DownloadManager;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Factory;
@@ -11,7 +10,6 @@ use Composer\Installer\InstallationManager;
 use Composer\Installer\PackageEvent;
 use Composer\Installer\PackageEvents;
 use Composer\IO\IOInterface;
-use Composer\Package\CompletePackage;
 use Composer\Plugin\PluginInterface;
 use ReflectionClass;
 
@@ -79,7 +77,8 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         $download_manager = $event->getComposer()->getDownloadManager();
 
         if (($download_manager->getDownloader('path') instanceof CustomPathDownloader)
-        && ($download_manager->getDownloader('file') instanceof CustomFileDownloader)) {
+            && ($download_manager->getDownloader('file') instanceof CustomFileDownloader)
+        ) {
             return;
         }
 
@@ -128,7 +127,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         /** @var InstallationManager $installation_manager */
         $installation_manager = $event->getComposer()->getInstallationManager();
 
-        $reflector       = new ReflectionClass($installation_manager);
+        $reflector = new ReflectionClass($installation_manager);
         $installers_prop = $reflector->getProperty('installers');
         $installers_prop->setAccessible(true);
         $installers = $installers_prop->getValue($installation_manager);
