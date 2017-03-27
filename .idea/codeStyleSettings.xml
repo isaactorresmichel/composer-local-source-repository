@@ -5,7 +5,6 @@
       <value>
         <PHPCodeStyleSettings>
           <option name="ALIGN_KEY_VALUE_PAIRS" value="true" />
-          <option name="ALIGN_ASSIGNMENTS" value="true" />
           <option name="PHPDOC_BLANK_LINES_AROUND_PARAMETERS" value="true" />
           <option name="LOWER_CASE_BOOLEAN_CONST" value="true" />
           <option name="LOWER_CASE_NULL_CONST" value="true" />
@@ -19,10 +18,8 @@
           <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
           <option name="BLANK_LINES_AFTER_PACKAGE" value="1" />
           <option name="SPECIAL_ELSE_IF_TREATMENT" value="true" />
-          <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
           <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
           <option name="ALIGN_MULTILINE_FOR" value="false" />
-          <option name="ALIGN_MULTILINE_BINARY_OPERATION" value="true" />
           <option name="CALL_PARAMETERS_WRAP" value="1" />
           <option name="METHOD_PARAMETERS_WRAP" value="5" />
           <option name="METHOD_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
