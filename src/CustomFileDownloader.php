@@ -3,17 +3,17 @@
 
 namespace isaactorresmichel\Composer;
 
-use Composer\Downloader\DownloaderInterface;
 use Composer\Downloader\FileDownloader;
 use Composer\Package\PackageInterface;
 
 /**
- * Base downloader for files
+ * Override for base file downloader. Code taken from David García on
+ * https://github.com/composer/composer/pull/6174/files
  *
- * @author Kirill chEbba Chebunin <iam@chebba.org>
- * @author Jordi Boggiano <j.boggiano@seld.be>
- * @author François Pluchino <francois.pluchino@opendisplay.com>
- * @author Nils Adermann <naderman@naderman.de>
+ * @author David García <https://github.com/david-garcia-garcia/>
+ * @author Isaac Torres <https://github.com/isaactorresmichel>
+ *
+ * @see \Composer\Downloader\FileDownloader
  */
 class CustomFileDownloader extends FileDownloader
 {
@@ -43,7 +43,7 @@ class CustomFileDownloader extends FileDownloader
      */
     protected function destinationIsSource(PackageInterface $package, $path)
     {
-        $url     = $package->getDistUrl();
+        $url = $package->getDistUrl();
         $realUrl = realpath($url);
         return strpos(realpath($path) . DIRECTORY_SEPARATOR,
           $realUrl . DIRECTORY_SEPARATOR) === 0;
