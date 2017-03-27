@@ -16,6 +16,11 @@ use Symfony\Component\Filesystem\Filesystem;
  * Override for base path downloader. Code taken from David García on
  * https://github.com/composer/composer/pull/6174/files
  *
+ * Unfortunately duplicates the code from \Composer\Downloader\PathDownloader.
+ * It's needed that way because inherits from \isaactorresmichel\Composer\CustomFileDownloader
+ * because of it's custom code. Thats the reason functions lie getVcsReference
+ * can't be inherited from \Composer\Downloader\PathDownloader.
+ *
  * @author David García <https://github.com/david-garcia-garcia/>
  * @author Isaac Torres <https://github.com/isaactorresmichel>
  *
