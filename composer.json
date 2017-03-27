@@ -1,0 +1,28 @@
+{
+  "name": "isaactorresmichel/composer-local-source-repository",
+  "type": "composer-plugin",
+  "description": "Plugin that adds support for having packages installed to package source directory.",
+  "license": "MIT",
+  "require": {
+    "composer-plugin-api": "^1.1",
+    "composer/installers": "^1.0"
+  },
+  "authors": [
+    {
+      "name": "Isaac Torres",
+      "homepage": "https://github.com/isaactorresmichel"
+    },
+    {
+      "name": "David Garcia",
+      "homepage": "https://github.com/david-garcia-garcia"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "isaactorresmichel\\Composer\\": "src/"
+    }
+  },
+  "extra": {
+    "class": "isaactorresmichel\\Composer\\Plugin"
+  }
+}
