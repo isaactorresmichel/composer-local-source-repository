@@ -1,10 +1,8 @@
 # Composer Local Source Repository
-This composer plugin is for PHP developers that creates custom local (non-published ) composer packages, and want to 
-have their dependencies managed by composer. 
+The goal of this plugin is to have non-published (local) `repository` packages, inside our main project. And have them
+*installed/mapped* on the same source dir, without having to rely on symbolic links, full package copies to 
+secondary directories or the vendor directory.
 
-This package allows them to have their sources inside a bigger project and be managed from composer without having to rely
-on symbolic links or packages copies. The goal of plugin is to have a simple package routed to a install path.
- 
 ## Requirements 
  - **composer-plugin-api**: ^1.1
  - **composer/installers**: ^1.0
@@ -13,9 +11,9 @@ on symbolic links or packages copies. The goal of plugin is to have a simple pac
 This is an example for a custom drupal-module package. The only important part to set in your *composer.json* are:
  
 * Add the local `repositories` to your package.
-* Set your `extra` files paths for **composer/installers** wich tells composer to load the custom installers. 
-For more info look [Composer installers](https://github.com/composer/installers)
-* Set your `require` statements for your custom main package and source packages. 
+* Set your `extra` files paths for **composer/installers** wich tells composer where to map the local packages. 
+For more info look [Composer installers](https://github.com/composer/installers).
+* Set the dependency `isaactorresmichel/composer-local-source-repository": "^1.0@alpha"` on your main `composer.json` and source packages (the packages to install). 
 
 ```json
 {
