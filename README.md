@@ -15,7 +15,7 @@ This is an example for a custom drupal-module package. The only important part t
 * Add the local `repositories` to your package.
 * Set your `extra` files paths for **composer/installers** wich tells composer to load the custom installers. 
 For more info look [Composer installers](https://github.com/composer/installers)
-* Set your `require` statements for your custom packages. 
+* Set your `require` statements for your custom main package and source packages. 
 
 ```json
 {
