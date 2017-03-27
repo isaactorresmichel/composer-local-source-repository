@@ -12,19 +12,18 @@
 
 namespace isaactorresmichel\Composer;
 
-use Composer\Composer;
 use Composer\Installer\LibraryInstaller;
-use Composer\IO\IOInterface;
 use Composer\Package\PackageInterface;
 use Composer\Repository\InstalledRepositoryInterface;
-use Composer\Util\Filesystem;
-use Composer\Util\Silencer;
 
 /**
- * Package installation manager.
+ * Override for base library installer. Code taken from David García on
+ * https://github.com/composer/composer/pull/6174/files
  *
- * @author Jordi Boggiano <j.boggiano@seld.be>
- * @author Konstantin Kudryashov <ever.zet@gmail.com>
+ * @author David García <https://github.com/david-garcia-garcia/>
+ * @author Isaac Torres <https://github.com/isaactorresmichel>
+ *
+ * @see \Composer\Downloader\FileDownloader
  */
 class CustomLibraryInstaller extends LibraryInstaller
 {
