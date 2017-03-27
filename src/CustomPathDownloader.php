@@ -39,10 +39,12 @@ class CustomPathDownloader extends CustomFileDownloader implements VcsCapableDow
         // If destination is source, just lock the package.
         if ($this->destinationIsSource($package, $path)) {
             $this->io->writeError(sprintf(
-                'Package %s installed to source directory %s',
-                $package->getName(), $path
-              )
-            );
+              '  - Installing <info>%s</info> (<comment>%s</comment>): Installed to source directory %s',
+              $package->getName(),
+              $package->getFullPrettyVersion(),
+              $package->getName(),
+              $path
+            ), false);
             return;
         }
 
