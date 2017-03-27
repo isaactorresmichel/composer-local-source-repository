@@ -44,7 +44,7 @@ class CustomPathDownloader extends CustomFileDownloader implements VcsCapableDow
               $package->getFullPrettyVersion(),
               $package->getName(),
               $path
-            ), false);
+            ));
             return;
         }
 
